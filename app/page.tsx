@@ -6,7 +6,7 @@ const Home: React.FC = () => {
             <div className="w-full max-w-5xl flex flex-col items-center text-center">
                 <h1 className="text-4xl font-bold mb-8">Welcome to My Portfolio</h1>
                 <p className="text-lg mb-8">
-                    Hi, I'm Wataru Murata, a passionate web developer with 5 years of experience.
+                    Hi, I&#39;m Wataru Murata, a passionate web developer with 5 years of experience.
                 </p>
                 <Image
                     src="/profile.jpg"

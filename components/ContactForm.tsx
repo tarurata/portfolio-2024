@@ -48,7 +48,7 @@ const ContactForm: React.FC = () => {
             </div>
             <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="message">Message</label>
-                <textarea className="w-full px-3 py-2 border rounded-lg" id="message" name="message" rows="4" required></textarea>
+                <textarea className="w-full px-3 py-2 border rounded-lg" id="message" name="message" rows={4} required></textarea>
             </div>
             <ReCAPTCHA
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}

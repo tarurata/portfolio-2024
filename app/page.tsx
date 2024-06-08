@@ -1,15 +1,37 @@
+import React, {FormEvent } from "react";
+import ContactForm from '../components/ContactForm';
 import Image from "next/image";
 
 const Home: React.FC = () => {
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        const response = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        if (response.ok) {
+            alert('Message sent successfully!');
+            form.reset();
+        } else {
+            alert('Failed to send message. Please try again later.');
+        }
+    };
     return (
         <main className="flex flex-col items-center justify-between">
             {/* Hero Section */}
-            <section className="relative w-full h-screen bg-cover bg-center -mt-20" style={{ backgroundImage: 'url(/hero-bg.jpg)' }}>
+            <section className="relative w-full h-screen bg-cover bg-center -mt-14" style={{ backgroundImage: 'url(/hero-bg.jpg)' }}>
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
                     <h1 className="text-6xl font-bold mb-6">Welcome to My Portfolio</h1>
                     <p className="text-xl mb-8">Hi, I&#39;m Wataru Murata, a passionate web developer with 5 years of experience.</p>
-                    <Image src="/profile.png" alt="Profile Picture" width={200} height={200} className="rounded-full mb-6 border-4 border-amber-400" />
+                    <Image src="/profile.png" alt="Profile Picture" width={200} height={200} className="rounded-full mb-6 border-4 border-blue-800 border-opacity-80" />
                     <a href="#projects" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">View Projects</a>
                 </div>
             </section>
@@ -42,9 +64,13 @@ const Home: React.FC = () => {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-white text-center px-4">
                     <h2 className="text-3xl font-semibold mb-8">Skills</h2>
-                    <div className="flex flex-wrap justify-center gap-4">
+                    <div className="flex flex-wrap justify-center gap-4 text-gray-900">
+                        <span className="bg-gray-200 px-4 py-2 rounded-full">GA/GTM</span>
+                        <span className="bg-gray-200 px-4 py-2 rounded-full">Python</span>
+                        <span className="bg-gray-200 px-4 py-2 rounded-full">PHP</span>
+                        <span className="bg-gray-200 px-4 py-2 rounded-full">Terraform</span>
+                        <span className="bg-gray-200 px-4 py-2 rounded-full">CircleCI</span>
                         <span className="bg-gray-200 px-4 py-2 rounded-full">JavaScript</span>
-                        <span className="bg-gray-200 px-4 py-2 rounded-full">TypeScript</span>
                         <span className="bg-gray-200 px-4 py-2 rounded-full">React</span>
                         <span className="bg-gray-200 px-4 py-2 rounded-full">Next.js</span>
                         <span className="bg-gray-200 px-4 py-2 rounded-full">CSS</span>
@@ -62,6 +88,7 @@ const Home: React.FC = () => {
                     <a href="https://linkedin.com/in/wataru-murata" className="text-blue-500" target="_blank" rel="noopener noreferrer">
                         LinkedIn Profile
                     </a>
+                    <ContactForm />
                 </div>
             </section>
         </main>

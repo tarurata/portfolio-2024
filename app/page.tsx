@@ -4,7 +4,7 @@ const Home: React.FC = () => {
     return (
         <main className="flex flex-col items-center justify-between">
             {/* Hero Section */}
-            <section className="relative w-full h-screen bg-cover bg-center" style={{ backgroundImage: 'url(/hero-bg.jpg)' }}>
+            <section className="relative w-full h-screen bg-cover bg-center -mt-20" style={{ backgroundImage: 'url(/hero-bg.jpg)' }}>
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
                     <h1 className="text-6xl font-bold mb-6">Welcome to My Portfolio</h1>

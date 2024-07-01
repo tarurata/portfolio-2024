@@ -31,8 +31,8 @@ const Home: React.FC = () => {
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
                     <h1 className="text-6xl font-bold mb-6">Welcome to My Portfolio</h1>
                     <p className="text-xl mb-8">Hi, I&#39;m Wataru Murata, a passionate web developer with 5 years of experience.</p>
-                    <Image src="/profile.png" alt="Profile Picture" width={200} height={200} className="rounded-full mb-6 border-4 border-blue-800 border-opacity-80" />
-                    <a href="#projects" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">View Projects</a>
+                    <Image src="/profile.png" alt="Profile Picture" width={200} height={200} className="rounded-full mb-6 border-4 border-blue-950 border-opacity-85"/>
+                    <a href="#projects" className="bg-blue-950 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 border-blue-600 border-2">View Projects</a>
                 </div>
             </section>
             {/* Projects Section */}
@@ -41,10 +41,18 @@ const Home: React.FC = () => {
                 <div className="relative z-10 flex items-center h-screen justify-center text-white text-center px-4">
                     <div className="w-full max-w-5xl text-center">
                         <h2 className="text-3xl font-semibold mb-8">Projects</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
-                            <div className="border p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 bg-white bg-opacity-75">
-                                <h3 className="text-xl font-bold mb-4">Project 1</h3>
-                                <p className="text-sm">Description of my project. Highlight key features and technologies used.</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-20 text-gray-800">
+                            <div
+                                className="border p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 bg-white bg-opacity-75"
+                                style={{
+                                     backgroundImage: 'url(/mutsusaiketsu.png)',
+                                     backgroundSize: 'cover',
+                                     backgroundPosition: 'center',
+                                     color: 'black'
+                                }}
+                            >
+                                <h3 className="text-xl font-bold mb-4">mutsusaiketsu.jp</h3>
+                                <p className="text-sm">Website for painless blood collection clinic</p>
                             </div>
                             <div className="border p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 bg-white bg-opacity-75">
                                 <h3 className="text-xl font-bold mb-4">Project 2</h3>

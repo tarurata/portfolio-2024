@@ -1,6 +1,7 @@
-import React, {FormEvent } from "react";
+import React, { FormEvent } from 'react';
 import ContactForm from '../components/ContactForm';
-import Image from "next/image";
+import Projects from './projects/page';
+import Image from 'next/image';
 
 const Home: React.FC = () => {
     const handleSubmit = async (event: FormEvent) => {
@@ -23,6 +24,7 @@ const Home: React.FC = () => {
             alert('Failed to send message. Please try again later.');
         }
     };
+
     return (
         <main className="flex flex-col items-center justify-between">
             {/* Hero Section */}
@@ -30,39 +32,29 @@ const Home: React.FC = () => {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
                     <h1 className="text-6xl font-bold mb-6">Welcome to My Portfolio</h1>
-                    <p className="text-xl mb-8">Hi, I&#39;m Wataru Murata, a passionate web developer with 5 years of experience.</p>
-                    <Image src="/profile.png" alt="Profile Picture" width={200} height={200} className="rounded-full mb-6 border-4 border-blue-950 border-opacity-85"/>
-                    <a href="#projects" className="bg-blue-950 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 border-blue-600 border-2">View Projects</a>
+                    <p className="text-xl mb-8">Hi, I'm Wataru Murata, a passionate web developer with 5 years of experience.</p>
+                    <div className="flex gap-4">
+                        <a href="https://linkedin.com/in/wataru-murata"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                        >
+                            <Image src="/profile.png" alt="Profile Picture" width={200} height={200} className="rounded-full mb-6 border-4 border-blue-950 border-opacity-85"/>
+                        </a>
+                        <div className="w-50 h-50 mb-6 flex items-center justify-center">
+                            <Image src="https://tryhackme-badges.s3.amazonaws.com/tarataratara.png" alt="TryHackMe Badge" width={200} height={200} className="object-contain"/>
+                        </div>
+                    </div>
+                    <a href="#projects" className="bg-blue-950 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">View Projects</a>
                 </div>
             </section>
+
             {/* Projects Section */}
             <section id="projects" className="relative w-full min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url(/projects-bg.jpg)' }}>
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="relative z-10 flex items-center h-screen justify-center text-white text-center px-4">
                     <div className="w-full max-w-5xl text-center">
                         <h2 className="text-3xl font-semibold mb-8">Projects</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-20 text-gray-800">
-                            <div
-                                className="border p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 bg-white bg-opacity-75"
-                                style={{
-                                     backgroundImage: 'url(/mutsusaiketsu.png)',
-                                     backgroundSize: 'cover',
-                                     backgroundPosition: 'center',
-                                     color: 'black'
-                                }}
-                            >
-                                <h3 className="text-xl font-bold mb-4">mutsusaiketsu.jp</h3>
-                                <p className="text-sm">Website for painless blood collection clinic</p>
-                            </div>
-                            <div className="border p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 bg-white bg-opacity-75">
-                                <h3 className="text-xl font-bold mb-4">Project 2</h3>
-                                <p className="text-sm">Description of my project. Highlight key features and technologies used.</p>
-                            </div>
-                            <div className="border p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 bg-white bg-opacity-75">
-                                <h3 className="text-xl font-bold mb-4">Project 3</h3>
-                                <p className="text-sm">Description of my project. Highlight key features and technologies used.</p>
-                            </div>
-                        </div>
+                        <Projects />
                     </div>
                 </div>
             </section>

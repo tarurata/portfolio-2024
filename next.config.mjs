@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    domains: ['tryhackme-badges.s3.amazonaws.com'],
+  },
+};
 
 export default nextConfig;

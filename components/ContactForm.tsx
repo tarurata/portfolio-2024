@@ -50,10 +50,12 @@ const ContactForm: React.FC = () => {
                 <label className="block text-sm font-bold mb-2" htmlFor="message">Message</label>
                 <textarea className="w-full px-3 py-2 border rounded-lg" id="message" name="message" rows={4} required></textarea>
             </div>
+            <div className="mb-4 flex justify-center">
             <ReCAPTCHA
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                 onChange={(token) => setRecaptchaToken(token)}
             />
+            </div>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Send Message</button>
         </form>
     );

@@ -32,7 +32,7 @@ const Home: React.FC = () => {
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
                     <h1 className="text-6xl font-bold mb-6">Welcome to My Portfolio</h1>
-                    <p className="text-xl mb-8">Hi, I'm Wataru Murata, a passionate web developer with 5 years of experience.</p>
+                    <p className="text-xl mb-8">Hi, Im Wataru Murata, a passionate web developer with 5 years of experience.</p>
                     <div className="flex gap-4">
                         <a href="https://linkedin.com/in/wataru-murata"
                            target="_blank"

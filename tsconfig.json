@@ -15,7 +15,7 @@
     "plugins": [
       {
         "name": "next",
-        "homepage": "."
+        "homepage": "https://portfolio-2024-wataru.vercel.app"
       }
     ],
     "baseUrl": ".",

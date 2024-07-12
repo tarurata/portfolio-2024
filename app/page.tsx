@@ -1,5 +1,6 @@
 import React, { FormEvent } from 'react';
 import ContactForm from '../components/ContactForm';
+import ProjectCard from '../components/ContactForm';
 import Projects from './projects/page';
 import Image from 'next/image';
 

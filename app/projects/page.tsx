@@ -1,7 +1,7 @@
 // app/projects/page.tsx
 import React from 'react';
 import path from 'path';
-import ProjectCard from 'components/ProjectCard';
+// import ProjectCard from '/ProjectCard';
 
 const Projects: React.FC = () => {
     return (

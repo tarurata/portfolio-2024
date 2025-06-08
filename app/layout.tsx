@@ -1,22 +1,72 @@
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClientProvider } from "@/components/query-client-provider";
 
-const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return (
-      <html lang="en">
-      <body>
-      <header className="z-20 p-4 bg-gray-800 text-white text-center flex justify-end sticky top-0 opacity-80">
-          <nav>
-              <a href="/" className="px-4">Home</a>
-              {/*<a href="/about" className="px-4">About</a>*/}
-              <a href="/#projects" className="px-4">Projects</a>
-              <a href="/blog" className="px-4">Blog</a>
-              <a href="/#contact" className="px-4">Contact</a>
-          </nav>
-      </header>
-      {children}
-      </body>
-      </html>
-  );
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Wataru Murata - Full Stack Developer",
+  description:
+    "Portfolio website of Wataru Murata, a Full Stack Developer with 5 years of experience and expertise in Google Analytics and Google Tag Manager.",
+  keywords: [
+    "Full Stack Developer",
+    "Web Developer",
+    "Google Analytics",
+    "React",
+    "PHP",
+    "Python",
+    "Portfolio",
+  ],
+  authors: [{ name: "Wataru Murata" }],
+  creator: "Wataru Murata",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://wataru-murata.vercel.app",
+    title: "Wataru Murata - Full Stack Developer",
+    description:
+      "Portfolio website showcasing my experience as a Full Stack Developer with expertise in analytics and web development.",
+    siteName: "Wataru Murata Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wataru Murata - Full Stack Developer",
+    description:
+      "Portfolio website showcasing my experience as a Full Stack Developer with expertise in analytics and web development.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
-export default RootLayout;
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <QueryClientProvider>
+          <TooltipProvider>
+            {children}
+            <Toaster />
+            <Sonner />
+          </TooltipProvider>
+        </QueryClientProvider>
+      </body>
+    </html>
+  );
+}

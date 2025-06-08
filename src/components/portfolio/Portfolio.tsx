@@ -10,12 +10,14 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <HeroSection />
-      <AboutSection />
-      <ExperienceSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <FooterSection />
+      <main className="pt-16">
+        <HeroSection />
+        <AboutSection />
+        <ExperienceSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <FooterSection />
+      </main>
     </div>
   );
 };

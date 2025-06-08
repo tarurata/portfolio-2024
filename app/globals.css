@@ -70,12 +70,16 @@
 
 @layer components {
   .section-title {
-    @apply text-3xl font-bold text-slate-900 mb-8 text-center;
+    @apply text-4xl font-bold text-slate-900 mb-4 pb-4 text-center;
+  }
+
+  .hero-heading {
+    @apply text-4xl lg:text-7xl font-bold text-slate-900 mb-4 !leading-tight;
   }
 
   .contact-link {
     @apply inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm text-slate-600 hover:text-blue-600 hover:shadow-md transition-all duration-200 text-sm;
-  } 
+  }
 
   .experience-item {
     @apply border-l-2 border-blue-200 pl-4 relative;
@@ -104,7 +108,7 @@
   }
 
   .project-card {
-    @apply transition-all duration-300 hover:scale-105;
+    @apply transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md;
   }
 
   .technology-badge {
@@ -116,6 +120,12 @@
   }
 }
 
+.bg-dreamy {
+  background: radial-gradient(circle at 30% 20%, rgb(233, 216, 249) 0%, rgb(193, 224, 254) 40%, #fdf6f6 100%);
+  filter: blur(40px);
+  opacity: 0.95;
+  pointer-events: none;
+}
 
 html {
   scroll-behavior: smooth;

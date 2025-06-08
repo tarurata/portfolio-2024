@@ -191,20 +191,18 @@ const projects = [
   },
 ];
 
-// Add this CSS class definition before the Home component
-const sectionTitleStyle = "text-3xl font-bold text-slate-900 mb-8 pb-4 border-b border-slate-200";
-
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="flex flex-col min-h-screen relative bg-transparent">
+      <div className="fixed inset-0 -z-10 bg-dreamy" />
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="container mx-auto px-4 py-16 lg:py-24">
+        <section className="container mx-auto px-4 py-16 lg:py-24 relative">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
               <div className="flex-1 text-center lg:text-left">
-                <h1 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-4">
+                <h1 className="text-4xl lg:text-7xl font-bold text-slate-900 mb-4 prose-headings:leading-loose">
                   Hello, I am
                   <br />
                   <span className="text-blue-600">Wataru Murata</span>
@@ -266,11 +264,9 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="container mx-auto px-4 py-16 bg-slate-50">
+        <section id="about" className="container mx-auto px-4 py-12 relative">
           <div className="max-w-4xl mx-auto">
             <h2 className="section-title">About</h2>
-
-            {/* Summary */}
             <Card className="mb-8">
               <CardHeader className="border-b border-slate-200">
                 <CardTitle>Summary</CardTitle>
@@ -284,16 +280,19 @@ export default function Home() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </section>
 
-            {/* Experience */}
-            <section id="experience" className="container mx-auto px-4 py-16 bg-slate-50">
-              <h2 className="section-title">Experience</h2>
-            </section>
-            <Card className="mb-8">
+        {/* Experience Section */}
+        <section id="experience" className="container mx-auto px-4 py-12 relative">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="section-title">Experience</h2>
+            {/* Work Experience */}
+            <Card className="mb-6 shadow-lg rounded-xl bg-white/80 backdrop-blur-sm">
               <CardHeader className="border-b border-slate-200">
-                <CardTitle>Experience</CardTitle>
+                <CardTitle>Work Experience</CardTitle>
               </CardHeader>
-              <CardContent className="p-6 md:p-8 space-y-8">
+              <CardContent className="p-6 md:p-8 space-y-6">
                 {experiences.map((exp, index) => (
                   <div key={index} className="experience-item">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
@@ -331,11 +330,11 @@ export default function Home() {
             </Card>
 
             {/* Education */}
-            <Card className="mb-8">
+            <Card className="mb-6 shadow-lg rounded-xl bg-white/80 backdrop-blur-sm">
               <CardHeader className="border-b border-slate-200">
                 <CardTitle>Education</CardTitle>
               </CardHeader>
-              <CardContent className="p-6 md:p-8 space-y-6">
+              <CardContent className="p-6 md:p-8 space-y-4">
                 {education.map((edu, index) => (
                   <div key={index} className="education-item">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
@@ -360,7 +359,7 @@ export default function Home() {
             </Card>
 
             {/* Certifications */}
-            <Card className="mb-8">
+            <Card className="mb-6 shadow-lg rounded-xl bg-white/80 backdrop-blur-sm">
               <CardHeader className="border-b border-slate-200">
                 <CardTitle>Certifications</CardTitle>
               </CardHeader>
@@ -383,7 +382,7 @@ export default function Home() {
             </Card>
 
             {/* Skills */}
-            <Card>
+            <Card className="shadow-lg rounded-xl bg-white/80 backdrop-blur-sm">
               <CardHeader className="border-b border-slate-200">
                 <CardTitle>Technical Skills</CardTitle>
               </CardHeader>
@@ -413,16 +412,15 @@ export default function Home() {
           </div>
         </section>
 
-
         {/* Projects Section */}
-        <section id="projects" className="container mx-auto px-4 py-16 bg-slate-50">
+        <section id="projects" className="container mx-auto px-4 py-16 relative">
           <div className="max-w-6xl mx-auto">
             <h2 className="section-title">Featured Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projects.map((project, index) => (
                 <Card
                   key={index}
-                  className="project-card hover:shadow-lg transition-shadow duration-300"
+                  className="project-card hover:shadow-lg transition-shadow duration-300 shadow-lg rounded-xl bg-white/80 backdrop-blur-sm"
                 >
                   <CardHeader>
                     <CardTitle className="text-xl">{project.title}</CardTitle>

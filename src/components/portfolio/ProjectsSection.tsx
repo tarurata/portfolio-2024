@@ -155,7 +155,7 @@ const ProjectsSection = () => {
                       {project.technologies.map((tech, techIndex) => (
                         <Badge
                           key={techIndex}
-                          variant=""
+                          variant="secondary"
                           className="text-xs px-20"
                         >
                           {tech}
@@ -188,8 +188,8 @@ const ProjectsSection = () => {
                   Interested in Working Together?
                 </h3>
                 <p className="text-slate-600 dark:text-slate-300 mb-6">
-                  I'm always open to discussing new opportunities and
-                  interesting projects. Let's connect and see how we can
+                  I&apos;m always open to discussing new opportunities and
+                  interesting projects. Let&apos;s connect and see how we can
                   collaborate.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

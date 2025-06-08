@@ -62,8 +62,8 @@ const FooterSection = () => {
               <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
               <div className="w-24 h-1 bg-blue-400 mx-auto mb-8"></div>
               <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-                I'm currently open to new opportunities and would love to hear
-                about your projects. Feel free to reach out if you'd like to
+                I&apos;m currently open to new opportunities and would love to hear
+                about your projects. Feel free to reach out if you&apos;d like to
                 collaborate or just want to connect.
               </p>
             </div>
@@ -72,11 +72,11 @@ const FooterSection = () => {
               {/* Contact Information */}
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
+                  <h3 className="text-2xl font-bold mb-6">Let&apos;s Connect</h3>
                   <p className="text-slate-300 mb-8 leading-relaxed">
                     Whether you have a project in mind, want to discuss
-                    opportunities, or simply want to network, I'd love to hear
-                    from you. I'm particularly interested in roles involving
+                    opportunities, or simply want to network, I&apos;d love to hear
+                    from you. I&apos;m particularly interested in roles involving
                     analytics, full-stack development, and cybersecurity.
                   </p>
                 </div>
@@ -88,8 +88,8 @@ const FooterSection = () => {
                       key={index}
                       href={contact.href}
                       className={`flex items-center gap-4 p-4 rounded-lg transition-colors ${contact.href !== "#"
-                          ? "hover:bg-slate-800 cursor-pointer"
-                          : "cursor-default"
+                        ? "hover:bg-slate-800 cursor-pointer"
+                        : "cursor-default"
                         }`}
                     >
                       <div className="p-2 bg-blue-600 rounded-lg">

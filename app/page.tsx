@@ -17,9 +17,11 @@ import {
   Calendar,
   ExternalLink,
   Download,
+  Award,
 } from "lucide-react";
 import { Metadata } from "next";
 import { Header } from "./components/header";
+import { CertificationCard } from "./components/CertificationCard";
 
 export const metadata: Metadata = {
   title: "Wataru Murata - Full Stack Developer Portfolio",
@@ -127,17 +129,33 @@ const education = [
 ];
 
 const certifications = [
-  { name: "CompTIA Security+", issuer: "CompTIA", date: "May 2025" },
-  { name: "Certified in Cybersecurity (CC)", issuer: "ISC2", date: "Aug 2024" },
+  {
+    name: "CompTIA Security+",
+    issuer: "CompTIA",
+    date: "May 2025",
+    logo: "https://www.comptia.org/favicon.ico",
+    credentialUrl: "https://www.credly.com/badges/bf62dfba-98e1-4fe7-8372-62d313e94370/public_url"
+  },
+  {
+    name: "Certified in Cybersecurity (CC)",
+    issuer: "ISC2",
+    date: "Aug 2024",
+    logo: "https://www.isc2.org/favicon.ico",
+    credentialUrl: "https://www.credly.com/badges/924bd995-cd00-4e17-8b27-b7867ce4f52b/linked_in_profile"
+  },
   {
     name: "Google Analytics Certification",
     issuer: "Google",
     date: "Mar 2025",
+    logo: "https://www.google.com/favicon.ico",
+    credentialUrl: "https://skillshop.credential.net/8148410e-df77-4ce5-9f73-9094814b1280"
   },
   {
     name: "Google BigQuery and SQL with Google Analytics 4",
     issuer: "Udemy",
     date: "Mar 2024",
+    logo: "",
+    credentialUrl: ""
   },
 ];
 
@@ -216,10 +234,6 @@ export default function Home() {
                   knowledge at CCTB.
                 </p>
                 <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
-                  <a href="tel:778-928-2224" className="contact-link">
-                    <Phone className="w-4 h-4" />
-                    778-928-2224
-                  </a>
                   <a
                     href="mailto:saycheese5963@gmail.com"
                     className="contact-link"
@@ -246,9 +260,11 @@ export default function Home() {
                     GitHub
                   </a>
                 </div>
-                <Button size="lg" className="gap-2">
-                  <Download className="w-4 h-4" />
-                  Download Resume
+                <Button size="lg" className="gap-2" asChild>
+                  <a href="/resume.pdf" download>
+                    <Download className="w-4 h-4" />
+                    Download Resume
+                  </a>
                 </Button>
               </div>
               <div className="flex-shrink-0">
@@ -366,16 +382,14 @@ export default function Home() {
               <CardContent className="p-6 md:p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {certifications.map((cert, index) => (
-                    <div
+                    <CertificationCard
                       key={index}
-                      className="certification-item p-4 bg-slate-50 rounded-lg"
-                    >
-                      <h3 className="font-semibold text-slate-900">
-                        {cert.name}
-                      </h3>
-                      <p className="text-blue-600 text-sm">{cert.issuer}</p>
-                      <p className="text-slate-500 text-sm">{cert.date}</p>
-                    </div>
+                      name={cert.name}
+                      issuer={cert.issuer}
+                      date={cert.date}
+                      logo={cert.logo}
+                      credentialUrl={cert.credentialUrl}
+                    />
                   ))}
                 </div>
               </CardContent>
@@ -456,10 +470,6 @@ export default function Home() {
             I&apos;m always interested in new opportunities and collaborations.
           </p>
           <div className="flex flex-wrap justify-center gap-6 mb-8">
-            <a href="tel:778-928-2224" className="footer-link">
-              <Phone className="w-5 h-5" />
-              778-928-2224
-            </a>
             <a href="mailto:saycheese5963@gmail.com" className="footer-link">
               <Mail className="w-5 h-5" />
               saycheese5963@gmail.com

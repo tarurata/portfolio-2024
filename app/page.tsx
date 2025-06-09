@@ -22,6 +22,7 @@ import {
 import { Metadata } from "next";
 import { Header } from "./components/header";
 import { CertificationCard } from "./components/CertificationCard";
+import { ProjectCard } from "./components/ProjectCard";
 
 export const metadata: Metadata = {
   title: "Wataru Murata - Full Stack Developer Portfolio",
@@ -411,8 +412,8 @@ export default function Home() {
                         {category.skills.map((skill, skillIndex) => (
                           <Badge
                             key={skillIndex}
-                            variant="secondary"
-                            className="skill-badge"
+                            variant="outline"
+                            className="technology-badge bg-gradient-to-r from-blue-50 to-slate-50 hover:from-blue-100 hover:to-slate-100 text-slate-700 hover:text-blue-700 border-blue-200/50 hover:border-blue-300 hover:shadow-sm transition-all duration-300 cursor-default px-3 py-1"
                           >
                             {skill}
                           </Badge>
@@ -432,32 +433,12 @@ export default function Home() {
             <h2 className="section-title">Featured Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {projects.map((project, index) => (
-                <Card
+                <ProjectCard
                   key={index}
-                  className="project-card hover:shadow-lg transition-shadow duration-300 shadow-lg rounded-xl bg-white/80 backdrop-blur-sm"
-                >
-                  <CardHeader>
-                    <CardTitle className="text-xl">{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-6 md:p-8">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech, techIndex) => (
-                        <Badge
-                          key={techIndex}
-                          variant="outline"
-                          className="technology-badge"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                    <Button variant="outline" size="sm" className="gap-2">
-                      <ExternalLink className="w-3 h-3" />
-                      View Details
-                    </Button>
-                  </CardContent>
-                </Card>
+                  title={project.title}
+                  description={project.description}
+                  technologies={project.technologies}
+                />
               ))}
             </div>
           </div>

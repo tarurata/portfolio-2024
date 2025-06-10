@@ -39,14 +39,14 @@ export function ProjectCard({ title, description, technologies }: ProjectCardPro
                         </Badge>
                     ))}
                 </div>
-                <Button
+                {/* <Button
                     variant="outline"
                     size="sm"
                     className="gap-2 bg-white/50 hover:bg-white/80 transition-colors duration-300 relative z-10"
                 >
                     <ExternalLink className="w-3 h-3" />
                     View Details
-                </Button>
+                </Button> */}
             </CardContent>
         </Card>
     );

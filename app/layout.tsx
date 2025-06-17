@@ -13,6 +13,14 @@ export const metadata: Metadata = {
   title: "Wataru Murata - Full Stack Developer",
   description:
     "Portfolio website of Wataru Murata, a Full Stack Developer with 5 years of experience and expertise in Google Analytics and Google Tag Manager.",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.svg', type: 'image/svg+xml' }
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   keywords: [
     "Full Stack Developer",
     "Web Developer",

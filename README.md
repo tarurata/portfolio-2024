@@ -1,3 +1,7 @@
+<img width="979" alt="image" src="https://github.com/user-attachments/assets/e8dd1185-0227-405e-981f-31cb4e058a5f" />
+
+This portfolio is running on [https://www.wataru-murata.com/](https://www.wataru-murata.com/)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

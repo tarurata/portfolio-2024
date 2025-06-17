@@ -18,6 +18,9 @@ import {
   ExternalLink,
   Download,
   Award,
+  Bug,
+  Users,
+  BookOpen,
 } from "lucide-react";
 import { Metadata } from "next";
 import { Header } from "./components/header";
@@ -149,7 +152,7 @@ const certifications = [
     issuer: "Google",
     date: "Mar 2025",
     logo: "https://www.google.com/favicon.ico",
-    credentialUrl: "https://skillshop.credential.net/8148410e-df77-4ce5-9f73-9094814b1280"
+    credentialUrl: "https://skillshop.credential.net/bc131b4f-2acc-4416-b015-83371eead02e"
   },
   {
     name: "Google BigQuery and SQL with Google Analytics 4",
@@ -295,6 +298,44 @@ export default function Home() {
                   Currently advancing my cybersecurity knowledge at the Canadian
                   College of Technology and Business (CCTB).
                 </p>
+              </CardContent>
+            </Card>
+
+            {/* Work Style & Strengths */}
+            <Card className="mb-8">
+              <CardHeader className="border-b border-slate-200">
+                <CardTitle>Work Style & Strengths</CardTitle>
+              </CardHeader>
+              <CardContent className="p-4 md:p-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="flex flex-col items-center text-center p-4 bg-blue-50 rounded-lg">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                      <Bug className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h3 className="font-semibold text-slate-900 mb-2">Analytical Problem Solver</h3>
+                    <p className="text-slate-600 text-sm">
+                      Proven track record in troubleshooting and solving complex technical challenges
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-blue-50 rounded-lg">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                      <Users className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h3 className="font-semibold text-slate-900 mb-2">Cross-functional Collaborator</h3>
+                    <p className="text-slate-600 text-sm">
+                      Strong communication skills enabling effective collaboration across teams and departments
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-blue-50 rounded-lg">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                      <BookOpen className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h3 className="font-semibold text-slate-900 mb-2">Continuous Learner</h3>
+                    <p className="text-slate-600 text-sm">
+                      Actively pursuing cybersecurity certification while staying current with emerging technologies
+                    </p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>

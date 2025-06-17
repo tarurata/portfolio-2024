@@ -30,7 +30,7 @@ This is my personal portfolio website showcasing my work, skills, and experience
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/portfolio-2024.git
+git clone https://github.com/tarurata/portfolio-2024.git
 cd portfolio-2024
 ```
 

@@ -1,13 +1,51 @@
-<img width="979" alt="image" src="https://github.com/user-attachments/assets/e8dd1185-0227-405e-981f-31cb4e058a5f" />
+# Wataru Murata's Portfolio Website
 
-This portfolio is running on [https://www.wataru-murata.com/](https://www.wataru-murata.com/)
+<img width="979" alt="Portfolio Preview" src="https://github.com/user-attachments/assets/e8dd1185-0227-405e-981f-31cb4e058a5f" />
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Overview
+
+This is my personal portfolio website showcasing my work, skills, and experience. The site is built using modern web technologies and is deployed at [https://www.wataru-murata.com/](https://www.wataru-murata.com/)
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) - React framework for production
+- TypeScript - For type-safe code
+- Tailwind CSS - For styling
+- Vercel - For deployment and hosting
+
+## Features
+
+- Responsive design
+- Modern UI/UX
+- Fast page loads
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18.0 or later
+- npm, yarn, pnpm, or bun package manager
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/portfolio-2024.git
+cd portfolio-2024
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
@@ -18,23 +56,32 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- The main page can be edited in `app/page.tsx`
+- The site uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) for optimized font loading
+- Styles are managed through Tailwind CSS
+- Components are located in the `components` directory
+
+## Deployment
+
+This project is deployed on [Vercel](https://vercel.com), the platform created by the team behind Next.js. The deployment is automatically triggered on pushes to the main branch.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Learn Next.js](https://nextjs.org/learn)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+This project is open source and available under the MIT License.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For any questions or feedback, please reach out through the contact form on my website or via GitHub.

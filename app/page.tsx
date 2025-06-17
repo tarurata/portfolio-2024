@@ -188,7 +188,7 @@ const skillCategories = [
 
 const projects = [
   {
-    title: "Analytics Migration System",
+    title: "Transition from Universal Analytics to GA4",
     description:
       "Led transition from Universal Analytics to GA4 for 40+ websites with 2.5B monthly page views",
     technologies: ["Google Analytics", "Python", "BigQuery"],

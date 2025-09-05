@@ -69,6 +69,19 @@ bun dev
 
 This project is deployed on [Vercel](https://vercel.com), the platform created by the team behind Next.js. The deployment is automatically triggered on pushes to the main branch.
 
+## GitHub Actions Workflows
+
+This repository includes comprehensive GitHub Actions workflows for automated CI/CD:
+
+- **CI Workflow**: Automated testing, linting, and building on multiple Node.js versions
+- **Deploy Workflow**: Automated deployment to Vercel on main branch pushes
+- **Code Quality**: ESLint, Prettier, security audits, and bundle analysis
+- **Performance Testing**: Lighthouse CI, accessibility testing, and bundle size tracking
+- **Dependency Updates**: Automated weekly dependency updates and security fixes
+- **Test Suite**: Comprehensive testing infrastructure (ready for when tests are added)
+
+For detailed workflow documentation, see [`.github/workflows/README.md`](.github/workflows/README.md).
+
 ## Learn More
 
 To learn more about the technologies used in this project:

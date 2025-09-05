@@ -1,0 +1,77 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Prettier check
+      run: |
+        if command -v prettier &> /dev/null; then
+          npx prettier --check .
+        else
+          echo "Prettier not found - skipping format check"
+        fi
+
+    - name: Run ESLint with annotations
+      run: npm run lint -- --format=@microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+      continue-on-error: true
+
+    - name: Upload ESLint results to GitHub
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: eslint-results.sarif
+        wait-for-processing: true
+
+    - name: Bundle analyzer
+      if: github.event_name == 'pull_request'
+      run: |
+        npm run build
+        npx @next/bundle-analyzer || echo "Bundle analyzer not available"
+      env:
+        ANALYZE: true
+        NEXT_SKIP_FONT_OPTIMIZATION: true
+
+  security-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run security audit
+      run: npm audit --audit-level=moderate
+
+    - name: Run license check
+      run: |
+        npx license-checker --summary || echo "License checker not available"

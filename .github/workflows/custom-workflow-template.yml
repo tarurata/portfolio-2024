@@ -1,0 +1,192 @@
+# Custom Workflow Template
+# Copy this file and customize it for your specific needs
+
+name: Custom Workflow Template
+
+# Define when this workflow should run
+on:
+  # Trigger on push to specific branches
+  push:
+    branches: [ main, develop ]
+  
+  # Trigger on pull requests
+  pull_request:
+    branches: [ main ]
+  
+  # Allow manual triggering
+  workflow_dispatch:
+  
+  # Schedule (cron syntax)
+  # schedule:
+  #   - cron: '0 2 * * 1'  # Every Monday at 2 AM UTC
+
+# Environment variables available to all jobs
+env:
+  NODE_VERSION: '20'
+  NODE_ENV: production
+
+jobs:
+  # Job name (can have multiple jobs)
+  example-job:
+    # Operating system to run on
+    runs-on: ubuntu-latest
+    
+    # Optional: Set timeout (default: 360 minutes)
+    timeout-minutes: 30
+    
+    # Optional: Run only if condition is met
+    if: github.event_name == 'push'
+    
+    # Optional: Set environment for secrets
+    environment: production
+    
+    # Steps to execute
+    steps:
+    # Checkout the repository code
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        # Optional: fetch full history
+        fetch-depth: 0
+    
+    # Setup Node.js environment
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    # Install dependencies
+    - name: Install dependencies
+      run: npm ci
+    
+    # Custom steps example
+    - name: Custom step example
+      run: |
+        echo "Current directory: $(pwd)"
+        echo "Node version: $(node --version)"
+        echo "Repository: ${{ github.repository }}"
+        echo "Event: ${{ github.event_name }}"
+    
+    # Conditional step
+    - name: Conditional step
+      if: github.ref == 'refs/heads/main'
+      run: echo "This only runs on main branch"
+    
+    # Step with environment variables
+    - name: Step with env vars
+      env:
+        CUSTOM_VAR: "Hello World"
+        SECRET_VAR: ${{ secrets.MY_SECRET }}
+      run: |
+        echo "Custom variable: $CUSTOM_VAR"
+        echo "Secret is set: ${{ secrets.MY_SECRET != '' }}"
+    
+    # Upload artifacts
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: example-artifacts
+        path: |
+          .next/
+          dist/
+        retention-days: 7
+    
+    # Continue on error
+    - name: Step that might fail
+      continue-on-error: true
+      run: |
+        # Some command that might fail
+        exit 1
+    
+    # Use outputs from previous steps
+    - name: Set output
+      id: example-output
+      run: |
+        echo "result=success" >> $GITHUB_OUTPUT
+        echo "timestamp=$(date)" >> $GITHUB_OUTPUT
+    
+    - name: Use output
+      run: |
+        echo "Result: ${{ steps.example-output.outputs.result }}"
+        echo "Timestamp: ${{ steps.example-output.outputs.timestamp }}"
+
+  # Second job that depends on the first
+  dependent-job:
+    runs-on: ubuntu-latest
+    needs: example-job
+    if: success()  # Only run if previous job succeeded
+    
+    steps:
+    - name: Dependent step
+      run: echo "This runs after example-job completes successfully"
+
+  # Matrix job (runs multiple variations)
+  matrix-job:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18, 20]
+        os: [ubuntu-latest, windows-latest]
+      # Optional: allow failures
+      fail-fast: false
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Test on ${{ matrix.os }}
+      run: echo "Testing Node.js ${{ matrix.node-version }} on ${{ matrix.os }}"
+
+# Common use cases for custom workflows:
+
+# 1. Code formatting with Prettier:
+# - name: Check formatting
+#   run: npx prettier --check .
+
+# 2. Run specific tests:
+# - name: Run unit tests
+#   run: npm run test:unit
+
+# 3. Build and deploy to staging:
+# - name: Deploy to staging
+#   if: github.ref == 'refs/heads/develop'
+#   run: npm run deploy:staging
+
+# 4. Send notifications:
+# - name: Notify Slack
+#   uses: 8398a7/action-slack@v3
+#   with:
+#     status: ${{ job.status }}
+#     webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+# 5. Cache dependencies for faster builds:
+# - name: Cache node modules
+#   uses: actions/cache@v4
+#   with:
+#     path: ~/.npm
+#     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+# 6. Create releases:
+# - name: Create Release
+#   uses: actions/create-release@v1
+#   with:
+#     tag_name: ${{ github.ref }}
+#     release_name: Release ${{ github.ref }}
+
+# Available GitHub context variables:
+# - ${{ github.actor }}          - User who triggered the workflow
+# - ${{ github.event_name }}     - Event that triggered the workflow
+# - ${{ github.ref }}            - Branch or tag ref
+# - ${{ github.repository }}     - Repository name
+# - ${{ github.sha }}            - Commit SHA
+# - ${{ github.workspace }}      - Workspace directory path
+# - ${{ runner.os }}             - Operating system (Linux, Windows, macOS)
+# - ${{ job.status }}            - Status of the current job
+# - ${{ steps.<step-id>.outputs.<output-name> }} - Outputs from steps

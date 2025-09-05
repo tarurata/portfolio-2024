@@ -1,0 +1,135 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Check if tests exist
+      id: check-tests
+      run: |
+        if [ -d "__tests__" ] || [ -d "tests" ] || [ -d "src/__tests__" ] || grep -q '"test"' package.json; then
+          echo "tests-exist=true" >> $GITHUB_OUTPUT
+          echo "Tests found in the project"
+        else
+          echo "tests-exist=false" >> $GITHUB_OUTPUT
+          echo "No tests found in the project"
+        fi
+
+    - name: Run unit tests
+      if: steps.check-tests.outputs.tests-exist == 'true'
+      run: npm test
+      env:
+        CI: true
+
+    - name: Generate test coverage
+      if: steps.check-tests.outputs.tests-exist == 'true'
+      run: |
+        if npm run | grep -q "test:coverage"; then
+          npm run test:coverage
+        else
+          echo "No coverage script found"
+        fi
+
+    - name: Upload coverage reports
+      if: steps.check-tests.outputs.tests-exist == 'true'
+      uses: codecov/codecov-action@v4
+      with:
+        file: ./coverage/lcov.info
+        fail_ci_if_error: false
+        verbose: true
+
+    - name: Setup test infrastructure
+      if: steps.check-tests.outputs.tests-exist == 'false'
+      run: |
+        echo "# Test Setup Guide" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "No tests found in this project. To add testing:" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "## For Jest + React Testing Library:" >> $GITHUB_STEP_SUMMARY
+        echo "1. Install dependencies:" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+        echo "npm install --save-dev jest @testing-library/react @testing-library/jest-dom" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "2. Add test script to package.json:" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+        echo '"test": "jest",' >> $GITHUB_STEP_SUMMARY
+        echo '"test:watch": "jest --watch",' >> $GITHUB_STEP_SUMMARY
+        echo '"test:coverage": "jest --coverage"' >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "3. Create a test file (e.g., \`__tests__/page.test.tsx\`):" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`javascript" >> $GITHUB_STEP_SUMMARY
+        echo "import { render, screen } from '@testing-library/react';" >> $GITHUB_STEP_SUMMARY
+        echo "import Home from '@/app/page';" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "test('renders homepage', () => {" >> $GITHUB_STEP_SUMMARY
+        echo "  render(<Home />);" >> $GITHUB_STEP_SUMMARY
+        echo "  expect(screen.getByText('Wataru Murata')).toBeInTheDocument();" >> $GITHUB_STEP_SUMMARY
+        echo "});" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    if: false  # Disabled by default, enable when E2E tests are added
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Playwright
+      run: npx playwright install --with-deps
+
+    - name: Build application
+      run: npm run build
+      env:
+        NEXT_SKIP_FONT_OPTIMIZATION: true
+
+    - name: Start application
+      run: npm start &
+      env:
+        PORT: 3000
+
+    - name: Wait for application to be ready
+      run: |
+        timeout 60 bash -c 'until curl -f http://localhost:3000; do sleep 2; done'
+
+    - name: Run Playwright tests
+      run: npx playwright test
+
+    - name: Upload Playwright report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 7
